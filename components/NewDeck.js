@@ -1,18 +1,26 @@
 import React, { Component } from 'react'
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
 import { black, white, gray } from '../utils/colors'
+import { saveDeckTitle } from '../utils/helpers'
 
 class NewDeck extends Component {
+  state = {
+    text: ''
+  }
+  addDeck = () => {
+    saveDeckTitle(this.state.text)
+  }
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.header}>What is the title of your new deck?</Text>
         <TextInput 
           style={styles.input}
-          onChangeText={(text) => {console.log(text)}}
+          onChangeText={(text) => this.setState({ text })}
+          value={this.state.text}
           placeholder="Deck Title"
         />
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={this.addDeck}>
           <Text style={styles.btnText}>Submit</Text>
         </TouchableOpacity>
       </View>

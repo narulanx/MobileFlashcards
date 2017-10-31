@@ -1,24 +1,39 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { gray } from '../utils/colors'
 import { Card } from 'react-native-elements'
+import { getDecks } from '../utils/helpers'
 
 class Decks extends Component {
+  state = {
+    decks: {}
+  }
+  componentDidMount () {
+    getDecks().then((decks) => {
+      this.setState({ decks })
+    })
+  }
   render() {
+    const { decks } = this.state
+    const deck_keys = decks ? Object.keys(decks) : [];
     return (
       <View style={styles.container}>
-        <View style={styles.deck}>
-          <Text style={styles.deckHeader}>udaciCards</Text>
-          <Text style={styles.deckText}>3 cards</Text>
-        </View>
-        <View style={styles.deck}>
-          <Text style={styles.deckHeader}>new deck</Text>
-          <Text style={styles.deckText}>0 cards</Text>
-        </View>
-        <View style={styles.deck}>
-          <Text style={styles.deckHeader}>New Deck 2</Text>
-          <Text style={styles.deckText}>0 cards</Text>
-        </View>
+        { deck_keys.length === 0 
+          ? <View style={styles.deck}>
+              <Text style={styles.deckText}>No Decks created!</Text>
+            </View> 
+          : decks && deck_keys.map((deck) => (
+            <View key={decks[deck].title} style={styles.deck}>
+              <TouchableOpacity onPress={()=>this.props.navigation.navigate(
+                'IndividualDeck',
+                { cardId: deck })}
+              >
+                <Text style={styles.deckHeader}>{decks[deck].title}</Text>
+                <Text style={styles.deckText}>{decks[deck].questions.length} cards</Text>
+              </TouchableOpacity>
+            </View>
+          ))
+        }
       </View>
     )
   }
