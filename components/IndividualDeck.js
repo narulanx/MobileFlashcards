@@ -20,14 +20,20 @@ class IndividualDeck extends Component {
   }
   render() {
     const { title, count } = this.state
+    const { cardId } = this.props.navigation.state.params
     return (
       <View style={{flex: 1}}>
         <View style={styles.header}>
-          <TouchableOpacity style={styles.arrow}><Ionicons name='ios-arrow-round-back' size={50} color={white} /></TouchableOpacity>
+          <TouchableOpacity onPress={()=>this.props.navigation.navigate(
+            'Home',
+            { cardId }
+          )}>
+            <Ionicons name='ios-arrow-round-back' size={50} style={styles.arrow}></Ionicons>
+          </TouchableOpacity>
           <Text style={styles.headerText}>{title}</Text>
         </View>
         <View style={styles.container}>
-          <Text style={styles.headerText}>{title}</Text>
+          <Text style={styles.containerHeaderText}>{title}</Text>
           <Text style={styles.subHeaderText}>{count} cards</Text>
           <TouchableOpacity style={styles.hollowButton}>
             <Text style={styles.hollowBtnText}>Add Card</Text>
@@ -44,14 +50,19 @@ class IndividualDeck extends Component {
 const styles = StyleSheet.create({
   header: {
     height: 60,
-    backgroundColor: black
+    backgroundColor: black,
+    flexDirection: 'row'
   },
   arrow: {
     marginLeft: 20,
-    marginTop: 10
+    marginTop: 10,
+    color: white
   },
   headerText: {
-    color: white
+    color: white,
+    fontSize: 20,
+    marginTop: 20,
+    marginLeft: 20
   },
   container: {
     alignItems: 'center',
@@ -59,7 +70,7 @@ const styles = StyleSheet.create({
     marginTop: 'auto',
     marginBottom: 'auto'
   },
-  headerText: {
+  containerHeaderText: {
     fontSize: 40,
     marginBottom: 20,
     textAlign: 'center'
