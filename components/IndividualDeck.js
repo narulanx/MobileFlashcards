@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { getDeck } from '../utils/helpers'
 import { gray, black, white } from '../utils/colors'
-import { Feather } from '@expo/vector-icons'
+import { Ionicons } from '@expo/vector-icons'
 
 class IndividualDeck extends Component {
   state = {
@@ -23,7 +23,8 @@ class IndividualDeck extends Component {
     return (
       <View style={{flex: 1}}>
         <View style={styles.header}>
-          <Text>{title}</Text>
+          <TouchableOpacity style={styles.arrow}><Ionicons name='ios-arrow-round-back' size={50} color={white} /></TouchableOpacity>
+          <Text style={styles.headerText}>{title}</Text>
         </View>
         <View style={styles.container}>
           <Text style={styles.headerText}>{title}</Text>
@@ -42,10 +43,15 @@ class IndividualDeck extends Component {
 
 const styles = StyleSheet.create({
   header: {
-    flex: 1,
-    height: 20,
-    backgroundColor: black,
-    justifyContent: 'flex-start'
+    height: 60,
+    backgroundColor: black
+  },
+  arrow: {
+    marginLeft: 20,
+    marginTop: 10
+  },
+  headerText: {
+    color: white
   },
   container: {
     alignItems: 'center',

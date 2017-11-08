@@ -1,11 +1,20 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, StatusBar } from 'react-native'
 import Decks from './components/Decks'
 import NewDeck from './components/NewDeck'
 import IndividualDeck from './components/IndividualDeck'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
-import { white, purple } from './utils/colors'
+import { white, black } from './utils/colors'
+import { Constants } from 'expo'
+
+function FlashcardStatusBar({backgroundColor, ...props}) {
+  return (
+    <View style={{backgroundColor, height: Constants.statusBarHeight}}>
+      <StatusBar translucent backgroundColor={backgroundColor} {...props} />
+    </View>
+  )
+}
 
 const Tabs = TabNavigator({
   Decks: {
@@ -40,7 +49,10 @@ const MainNavigator = StackNavigator({
 export default class App extends React.Component {
   render() {
     return (
-      <MainNavigator />
+      <View style={{flex: 1}}>
+        <FlashcardStatusBar backgroundColor={black} barStyle="light-content" />
+        <MainNavigator />
+      </View>
     )
   }
 }
