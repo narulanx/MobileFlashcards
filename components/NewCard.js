@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
 import { black, white, gray } from '../utils/colors'
 import { Ionicons } from '@expo/vector-icons'
+import { addCardToDeck } from '../utils/helpers'
 
 class NewCard extends Component {
   state = {
@@ -10,7 +11,13 @@ class NewCard extends Component {
     answer: ''
   }
   addCard = () => {
-    
+    const { cardId } = this.props.navigation.state.params
+    addCardToDeck(cardId, {'question': this.state.question, 'answer': this.state.answer}).then(() => {
+      this.props.navigation.navigate(
+        'IndividualDeck',
+        { cardId }
+      )
+    })
   }
   render() {
     const { cardId } = this.props.navigation.state.params

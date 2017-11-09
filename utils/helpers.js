@@ -33,7 +33,8 @@ export function saveDeckTitle(title) {
 
 export function addCardToDeck(title, card) {
   // take in two arguments, title and card, and will add the card to the list of questions for the deck with the associated title. 
-  const deck = this.getDeck(title)
-  deck.questions.push(card)
-  AsyncStorage.setItem(FLASHCARD_KEY, {title: deck})
+  return getDecks().then((obj) => {
+    obj[title].questions.push(card)
+    return AsyncStorage.setItem(FLASHCARD_KEY, JSON.stringify(obj));
+  })
 }
