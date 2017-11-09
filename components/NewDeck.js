@@ -8,7 +8,9 @@ class NewDeck extends Component {
     text: ''
   }
   addDeck = () => {
-    saveDeckTitle(this.state.text)
+    saveDeckTitle(this.state.text).then(() => {
+      this.props.navigation.navigate('Home')
+    })
   }
   render() {
     return (

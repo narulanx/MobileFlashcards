@@ -24,10 +24,7 @@ class IndividualDeck extends Component {
     return (
       <View style={{flex: 1}}>
         <View style={styles.header}>
-          <TouchableOpacity onPress={()=>this.props.navigation.navigate(
-            'Home',
-            { cardId }
-          )}>
+          <TouchableOpacity onPress={()=>this.props.navigation.navigate('Home')}>
             <Ionicons name='ios-arrow-round-back' size={50} style={styles.arrow}></Ionicons>
           </TouchableOpacity>
           <Text style={styles.headerText}>{title}</Text>
@@ -35,7 +32,10 @@ class IndividualDeck extends Component {
         <View style={styles.container}>
           <Text style={styles.containerHeaderText}>{title}</Text>
           <Text style={styles.subHeaderText}>{count} cards</Text>
-          <TouchableOpacity style={styles.hollowButton}>
+          <TouchableOpacity style={styles.hollowButton} onPress={()=>this.props.navigation.navigate(
+            'NewCard',
+            { cardId }
+          )}>
             <Text style={styles.hollowBtnText}>Add Card</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.solidButton}>

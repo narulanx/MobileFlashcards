@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, StatusBar } from 'react-native'
 import Decks from './components/Decks'
 import NewDeck from './components/NewDeck'
 import IndividualDeck from './components/IndividualDeck'
+import NewCard from './components/NewCard'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { white, black } from './utils/colors'
@@ -39,6 +40,9 @@ const MainNavigator = StackNavigator({
   },
   IndividualDeck: {
     screen: IndividualDeck,
+  },
+  NewCard: {
+    screen: NewCard,
   }
 }, {
   navigationOptions: {
