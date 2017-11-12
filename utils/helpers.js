@@ -5,7 +5,7 @@ import { Notifications, Permissions } from 'expo'
 const NOTIFICATION_KEY = 'MobileFlashcards:notifications'
 const FLASHCARD_KEY = 'MobileFlashcards:decks'
 
-export function getDecks() {
+export const getDecks = () => {
   // return all of the decks along with their titles, questions, and answers. 
   return AsyncStorage.getItem(FLASHCARD_KEY)
     .then((data) => { 
@@ -13,7 +13,7 @@ export function getDecks() {
     })
 }
 
-export function getDeck(id) {
+export const getDeck = (id) => {
   // return the deck associated with that id.
   return AsyncStorage.getItem(FLASHCARD_KEY)
     .then((data) => {
@@ -22,7 +22,7 @@ export function getDeck(id) {
     })
 }
 
-export function saveDeckTitle(title) {
+export const saveDeckTitle = (title) => {
   // take in a single title argument and add it to the decks. 
   return getDecks().then((obj) => {
     if (obj) {
@@ -40,7 +40,7 @@ export function saveDeckTitle(title) {
   })
 }
 
-export function addCardToDeck(title, card) {
+export const addCardToDeck = (title, card) => {
   // take in two arguments, title and card, and will add the card to the list of questions for the deck with the associated title. 
   return getDecks().then((obj) => {
     obj[title].questions.push(card)
@@ -48,30 +48,28 @@ export function addCardToDeck(title, card) {
   })
 }
 
-export function clearLocalNotification() {
+export const clearLocalNotification = () => {
   // Clears the local notification
   return AsyncStorage.removeItem(NOTIFICATION_KEY)
     .then(Notifications.cancelAllScheduledNotificationsAsync)
 }
 
-function createNotification() {
+const createNotification = () =>  ({
   // Create the object for notification
-  return {
-    title: 'Create your deck and add cards for quiz!',
-    body: "👋 Don't forget to create deck/card today!",
-    ios: {
-      sound: true
-    },
-    android: {
-      sound: true,
-      priority: 'high',
-      sticky: false,
-      vibrate: true
-    }
+  title: 'Create your deck and add cards for quiz!',
+  body: "👋 Don't forget to create deck/card today!",
+  ios: {
+    sound: true
+  },
+  android: {
+    sound: true,
+    priority: 'high',
+    sticky: false,
+    vibrate: true
   }
-}
+})
 
-export function setLocalNotification() {
+export const setLocalNotification = () => {
   // Sets the local notification for every day at 8 pm
   AsyncStorage.getItem(NOTIFICATION_KEY)
     .then(JSON.parse)
