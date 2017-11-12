@@ -21,6 +21,8 @@ class IndividualDeck extends Component {
   render() {
     const { title, count } = this.state
     const { cardId } = this.props.navigation.state.params
+    const disabled = count > 0?false:true
+    const button = count > 0?'solidButton':'disabledButton'
     return (
       <View style={{flex: 1}}>
         <View style={styles.header}>
@@ -38,7 +40,10 @@ class IndividualDeck extends Component {
           )}>
             <Text style={styles.hollowBtnText}>Add Card</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.solidButton}>
+          <TouchableOpacity disabled={disabled} style={styles[button]} onPress={()=>this.props.navigation.navigate(
+            'Quiz',
+            { cardId }
+          )}>
             <Text style={styles.solidBtnText}>Start Quiz</Text>
           </TouchableOpacity>
         </View>
@@ -98,6 +103,14 @@ const styles = StyleSheet.create({
   },
   solidButton: {
     backgroundColor: black,
+    height: 40,
+    width: 120,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    borderRadius: 5
+  },
+  disabledButton: {
+    backgroundColor: gray,
     height: 40,
     width: 120,
     marginLeft: 'auto',

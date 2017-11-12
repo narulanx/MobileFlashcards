@@ -23,9 +23,16 @@ export function getDeck(id) {
 export function saveDeckTitle(title) {
   // take in a single title argument and add it to the decks. 
   return getDecks().then((obj) => {
-    obj[title] = {
-      'title': title,
-      'questions': []
+    if (obj) {
+      obj[title] = {
+        'title': title,
+        'questions': []
+      }
+    } else {
+      obj = {title: {
+        'title': title,
+        'questions': []
+      }}
     }
     return AsyncStorage.setItem(FLASHCARD_KEY, JSON.stringify(obj));
   })

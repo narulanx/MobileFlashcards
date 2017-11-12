@@ -37,7 +37,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     paddingLeft: 5,
-    marginBottom: 20
+    marginBottom: 20,
+    alignSelf: 'stretch'
   },
   header: {
     fontSize: 40,
@@ -46,7 +47,11 @@ const styles = StyleSheet.create({
   },
   container: {
     paddingLeft: 30,
-    paddingRight: 30
+    paddingRight: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 'auto',
+    marginBottom: 'auto'
   },
   button: {
     backgroundColor: black,

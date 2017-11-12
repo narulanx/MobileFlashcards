@@ -6,7 +6,6 @@ import { addCardToDeck } from '../utils/helpers'
 
 class NewCard extends Component {
   state = {
-    selectedDeck: '',
     question: '',
     answer: ''
   }

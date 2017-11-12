@@ -4,6 +4,7 @@ import Decks from './components/Decks'
 import NewDeck from './components/NewDeck'
 import IndividualDeck from './components/IndividualDeck'
 import NewCard from './components/NewCard'
+import Quiz from './components/Quiz'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { white, black } from './utils/colors'
@@ -39,10 +40,13 @@ const MainNavigator = StackNavigator({
     screen: Tabs
   },
   IndividualDeck: {
-    screen: IndividualDeck,
+    screen: IndividualDeck
   },
   NewCard: {
-    screen: NewCard,
+    screen: NewCard
+  },
+  Quiz: {
+    screen: Quiz
   }
 }, {
   navigationOptions: {
