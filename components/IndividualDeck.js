@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Animated } from 'react-native'
 import { getDeck } from '../utils/helpers'
 import { gray, black, white } from '../utils/colors'
 import { Ionicons } from '@expo/vector-icons'
@@ -7,25 +7,31 @@ import { Ionicons } from '@expo/vector-icons'
 class IndividualDeck extends Component {
   state = {
     title: '',
-    count: ''
+    count: '',
+    springValue: new Animated.Value(0.3)
   }
   componentDidMount() {
     // Get the details of an individual deck and then set its properties to the local state
     const { cardId } = this.props.navigation.state.params
+    const { springValue } = this.state
     getDeck(cardId).then((deck) => {
       this.setState({ 
         title: deck.title,
         count: deck.questions.length 
       })
     })
+    Animated.sequence([
+      Animated.timing(springValue, { toValue: 1.04, duration: 500 })
+    ]).start()
   }
+
   render() {
-    const { title, count } = this.state
+    const { title, count, springValue } = this.state
     const { cardId } = this.props.navigation.state.params
     const disabled = count > 0?false:true
     const button = count > 0?'solidButton':'disabledButton'
     return (
-      <View style={{flex: 1}}>
+      <Animated.View style={[{flex: 1}, {transform: [{scale: springValue}]}]}>
         <View style={styles.header}>
           <TouchableOpacity onPress={()=>this.props.navigation.navigate('Home')}>
             <Ionicons name='ios-arrow-round-back' size={50} style={styles.arrow}></Ionicons>
@@ -48,7 +54,7 @@ class IndividualDeck extends Component {
             <Text style={styles.solidBtnText}>Start Quiz</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </Animated.View>
     )
   }
 }
