@@ -1,11 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View, StatusBar } from 'react-native'
-import Decks from './components/Decks'
-import NewDeck from './components/NewDeck'
-import IndividualDeck from './components/IndividualDeck'
-import NewCard from './components/NewCard'
-import Quiz from './components/Quiz'
-import { TabNavigator, StackNavigator } from 'react-navigation'
+import { MainNavigator } from './components/StackNavigator'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { white, black } from './utils/colors'
 import { Constants } from 'expo'
@@ -19,48 +14,6 @@ function FlashcardStatusBar({backgroundColor, ...props}) {
     </View>
   )
 }
-
-// Tab Navigator for Decks and adding a new deck
-const Tabs = TabNavigator({
-  Decks: {
-    screen: Decks,
-    navigationOptions: {
-      tabBarLabel: 'Decks',
-      tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='cards' size={30} color={tintColor} />
-    } 
-  },
-  NewDeck: {
-    screen: NewDeck,
-    navigationOptions: {
-      tabBarLabel: 'New Deck',
-      tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='cards-playing-outline' size={30} color={tintColor} />
-    } 
-  }
-}, {
-  tabBarPosition: 'top',
-  animationEnabled: true,
-  swipeEnabled: true
-})
-
-// Stack Navigator with views for home, individual deck, new card and quiz
-const MainNavigator = StackNavigator({
-  Home: {
-    screen: Tabs
-  },
-  IndividualDeck: {
-    screen: IndividualDeck
-  },
-  NewCard: {
-    screen: NewCard
-  },
-  Quiz: {
-    screen: Quiz
-  }
-}, {
-  navigationOptions: {
-    header: null
-  }
-})
 
 export default class App extends React.Component {
   componentDidMount() {
