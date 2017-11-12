@@ -1,4 +1,6 @@
+import React from 'react'
 import { TabNavigator } from 'react-navigation'
+import { MaterialCommunityIcons } from '@expo/vector-icons'
 import Decks from './Decks'
 import NewDeck from './NewDeck'
 

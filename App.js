@@ -1,7 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View, StatusBar } from 'react-native'
 import { MainNavigator } from './components/StackNavigator'
-import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { white, black } from './utils/colors'
 import { Constants } from 'expo'
 import { setLocalNotification } from './utils/helpers'

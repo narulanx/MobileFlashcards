@@ -9,8 +9,12 @@ class NewDeck extends Component {
   }
   addDeck = () => {
     // Save the new deck to the AsyncStorage and then clear the notification for the day
-    saveDeckTitle(this.state.text).then(() => {
-      this.props.navigation.navigate('Home')
+    const { text } = this.state
+    saveDeckTitle(text).then(() => {
+      this.props.navigation.navigate(
+        'IndividualDeck',
+        { cardId: text }
+      )
       clearLocalNotification().then(setLocalNotification)
     })
   }
