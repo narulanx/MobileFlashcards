@@ -10,6 +10,11 @@ class IndividualDeck extends Component {
     count: '',
     springValue: new Animated.Value(0.3)
   }
+
+  componentWillUnmount() {
+    this.state.springValue.removeAllListeners()
+  }
+
   componentDidMount() {
     // Get the details of an individual deck and then set its properties to the local state
     const { cardId } = this.props.navigation.state.params
