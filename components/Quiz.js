@@ -105,7 +105,8 @@ class Quiz extends Component {
               <Text style={styles.questionAnswerText}>You got {correct} out of {questions.length} correct answers.</Text>
               <TouchableOpacity style={styles.hollowButton}
                 onPress={()=>this.props.navigation.navigate(
-                  'Home'
+                  'IndividualDeck',
+                  { cardId }
                 )}
               >
                 <Text style={styles.hollowBtnText}>Back to Deck</Text>
