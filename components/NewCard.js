@@ -9,6 +9,7 @@ class NewCard extends Component {
     question: '',
     answer: ''
   }
+  // Add the details of a card to the deck on submit and then clear the notification
   addCard = () => {
     const { cardId } = this.props.navigation.state.params
     addCardToDeck(cardId, {'question': this.state.question, 'answer': this.state.answer}).then(() => {

@@ -9,6 +9,7 @@ class Decks extends Component {
     decks: {}
   }
   componentDidMount () {
+    // Retrieve the list of decks and set it in the local state
     getDecks().then((decks) => {
       this.setState({ decks })
     })
@@ -17,6 +18,7 @@ class Decks extends Component {
     const { decks } = this.state
     const deck_keys = decks ? Object.keys(decks) : [];
     return (
+      // ScrollView to allow scrolling when the list of decks becomes too long
       <ScrollView style={styles.container}>
         { deck_keys.length === 0 
           ? <View style={styles.deck}>

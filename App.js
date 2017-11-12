@@ -11,6 +11,7 @@ import { white, black } from './utils/colors'
 import { Constants } from 'expo'
 import { setLocalNotification } from './utils/helpers'
 
+// Status Bar on the mobile application
 function FlashcardStatusBar({backgroundColor, ...props}) {
   return (
     <View style={{backgroundColor, height: Constants.statusBarHeight}}>
@@ -19,6 +20,7 @@ function FlashcardStatusBar({backgroundColor, ...props}) {
   )
 }
 
+// Tab Navigator for Decks and adding a new deck
 const Tabs = TabNavigator({
   Decks: {
     screen: Decks,
@@ -40,6 +42,7 @@ const Tabs = TabNavigator({
   swipeEnabled: true
 })
 
+// Stack Navigator with views for home, individual deck, new card and quiz
 const MainNavigator = StackNavigator({
   Home: {
     screen: Tabs
@@ -61,6 +64,7 @@ const MainNavigator = StackNavigator({
 
 export default class App extends React.Component {
   componentDidMount() {
+    // Sets the local notification when the application loads
     setLocalNotification()
   }
   render() {

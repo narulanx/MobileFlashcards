@@ -12,14 +12,14 @@ class Quiz extends Component {
     questionView: true,
     index: 1
   }
-
+  // Function to flip between question and answer
   toggleQuestionView() {
     const { questionView } = this.state
     this.setState({
       questionView: !questionView
     })
   }
-
+  // Function to move the view to the next question
   nextQuestion(result) {
     const { index, correct, incorrect } = this.state
     this.setState({
@@ -29,7 +29,7 @@ class Quiz extends Component {
       questionView: true
     })
   }
-
+  // Function to restart the quiz after displaying the score
   restartQuiz() {
     this.setState({
       correct: 0,
@@ -40,6 +40,7 @@ class Quiz extends Component {
   }
 
   componentDidMount() {
+    // Get the details of a card and display the questions in a quiz
     const { cardId } = this.props.navigation.state.params
     getDeck(cardId).then((deck) => {
       this.setState({ 

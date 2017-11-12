@@ -10,6 +10,7 @@ class IndividualDeck extends Component {
     count: ''
   }
   componentDidMount() {
+    // Get the details of an individual deck and then set its properties to the local state
     const { cardId } = this.props.navigation.state.params
     getDeck(cardId).then((deck) => {
       this.setState({ 

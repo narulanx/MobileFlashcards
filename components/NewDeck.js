@@ -8,6 +8,7 @@ class NewDeck extends Component {
     text: ''
   }
   addDeck = () => {
+    // Save the new deck to the AsyncStorage and then clear the notification for the day
     saveDeckTitle(this.state.text).then(() => {
       this.props.navigation.navigate('Home')
       clearLocalNotification().then(setLocalNotification)
@@ -15,6 +16,7 @@ class NewDeck extends Component {
   }
   render() {
     return (
+      // KeyboardAvoidingView is used to move the screen up on display of the Keyboard
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
         <Text style={styles.header}>What is the title of your new deck?</Text>
         <TextInput 

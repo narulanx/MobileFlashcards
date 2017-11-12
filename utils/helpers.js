@@ -49,11 +49,13 @@ export function addCardToDeck(title, card) {
 }
 
 export function clearLocalNotification() {
+  // Clears the local notification
   return AsyncStorage.removeItem(NOTIFICATION_KEY)
     .then(Notifications.cancelAllScheduledNotificationsAsync)
 }
 
 function createNotification() {
+  // Create the object for notification
   return {
     title: 'Create your deck and add cards for quiz!',
     body: "👋 Don't forget to create deck/card today!",
@@ -70,6 +72,7 @@ function createNotification() {
 }
 
 export function setLocalNotification() {
+  // Sets the local notification for every day at 8 pm
   AsyncStorage.getItem(NOTIFICATION_KEY)
     .then(JSON.parse)
     .then((data) => {
