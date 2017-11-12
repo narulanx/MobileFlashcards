@@ -9,6 +9,7 @@ import { TabNavigator, StackNavigator } from 'react-navigation'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { white, black } from './utils/colors'
 import { Constants } from 'expo'
+import { setLocalNotification } from './utils/helpers'
 
 function FlashcardStatusBar({backgroundColor, ...props}) {
   return (
@@ -55,6 +56,9 @@ const MainNavigator = StackNavigator({
 })
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification()
+  }
   render() {
     return (
       <View style={{flex: 1}}>

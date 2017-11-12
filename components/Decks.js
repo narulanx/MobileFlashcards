@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native'
 import { gray } from '../utils/colors'
 import { Card } from 'react-native-elements'
 import { getDecks } from '../utils/helpers'
@@ -17,7 +17,7 @@ class Decks extends Component {
     const { decks } = this.state
     const deck_keys = decks ? Object.keys(decks) : [];
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         { deck_keys.length === 0 
           ? <View style={styles.deck}>
               <Text style={styles.deckText}>No Decks created!</Text>
@@ -34,7 +34,7 @@ class Decks extends Component {
             </View>
           ))
         }
-      </View>
+      </ScrollView>
     )
   }
 }
@@ -43,8 +43,7 @@ const styles = StyleSheet.create({
   container: {
     alignSelf: 'stretch',
     flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'flex-start'
+    flexDirection: 'column'
   },
   deck: {
     height: 100,

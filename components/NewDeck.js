@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, KeyboardAvoidingView } from 'react-native'
 import { black, white, gray } from '../utils/colors'
-import { saveDeckTitle } from '../utils/helpers'
+import { saveDeckTitle, clearLocalNotification, setLocalNotification } from '../utils/helpers'
 
 class NewDeck extends Component {
   state = {
@@ -10,11 +10,12 @@ class NewDeck extends Component {
   addDeck = () => {
     saveDeckTitle(this.state.text).then(() => {
       this.props.navigation.navigate('Home')
+      clearLocalNotification().then(setLocalNotification)
     })
   }
   render() {
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView behavior="padding" style={styles.container}>
         <Text style={styles.header}>What is the title of your new deck?</Text>
         <TextInput 
           style={styles.input}
@@ -25,7 +26,8 @@ class NewDeck extends Component {
         <TouchableOpacity style={styles.button} onPress={this.addDeck}>
           <Text style={styles.btnText}>Submit</Text>
         </TouchableOpacity>
-      </View>
+        <View style={{ height: 60 }} />
+      </KeyboardAvoidingView>
     )
   }
 }

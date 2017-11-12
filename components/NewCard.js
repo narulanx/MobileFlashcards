@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, KeyboardAvoidingView } from 'react-native'
 import { black, white, gray } from '../utils/colors'
 import { Ionicons } from '@expo/vector-icons'
-import { addCardToDeck } from '../utils/helpers'
+import { addCardToDeck, clearLocalNotification, setLocalNotification } from '../utils/helpers'
 
 class NewCard extends Component {
   state = {
@@ -16,6 +16,7 @@ class NewCard extends Component {
         'IndividualDeck',
         { cardId }
       )
+      clearLocalNotification().then(setLocalNotification)
     })
   }
   render() {
@@ -31,7 +32,7 @@ class NewCard extends Component {
           </TouchableOpacity>
           <Text style={styles.headerText}>Add Card</Text>
         </View>
-        <View style={styles.container}>
+        <KeyboardAvoidingView behavior="padding" style={styles.container}>
           <TextInput 
             style={styles.input}
             onChangeText={(question) => this.setState({ question })}
@@ -47,7 +48,7 @@ class NewCard extends Component {
           <TouchableOpacity style={styles.button} onPress={this.addCard}>
             <Text style={styles.btnText}>Submit</Text>
           </TouchableOpacity>
-        </View>
+        </KeyboardAvoidingView>
       </View>
     )
   }
