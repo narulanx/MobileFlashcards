@@ -34,6 +34,10 @@ const Tabs = TabNavigator({
       tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='cards-playing-outline' size={30} color={tintColor} />
     } 
   }
+}, {
+  tabBarPosition: 'top',
+  animationEnabled: true,
+  swipeEnabled: true
 })
 
 const MainNavigator = StackNavigator({
